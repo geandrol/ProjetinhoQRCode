@@ -1,0 +1,25 @@
+function Footer() {
+  return (
+    <footer className="w-full bg-amber-800/70 backdrop-blur-md text-amber-50 shadow-inner ">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between p-6 gap-4">
+        
+        {/* Logo / Nome */}
+        <h1 className="text-2xl font-bold tracking-wide">Yu-Gi-Oh</h1>
+
+        {/* Links */}
+        <div className="flex gap-6 text-lg">
+          <p className="hover:text-yellow-200 cursor-pointer transition-colors">História</p>
+          <p className="hover:text-yellow-200 cursor-pointer transition-colors">Sobre</p>
+          <p className="hover:text-yellow-200 cursor-pointer transition-colors">Scanner</p>
+        </div>
+
+        {/* Direitos autorais */}
+        <p className="text-sm text-amber-200">
+          © {new Date().getFullYear()} Yu-Gi-Oh. Todos os direitos reservados.
+        </p>
+      </div>
+    </footer>
+  );
+}
+
+export default Footer;
