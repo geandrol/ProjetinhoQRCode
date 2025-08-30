@@ -217,25 +217,26 @@ const QRCodeReader = () => {
           )}
 
           <div className="flex gap-2 justify-center mb-2">
-            <button
-              onClick={handlePlay}
-              className="px-3 py-1 bg-yellow-500 text-black font-bold rounded shadow hover:bg-yellow-400 transition text-sm"
-            >
-              ▶ Play
-            </button>
-            <button
-              onClick={handleStop}
-              className="px-3 py-1 bg-red-600 text-white font-bold rounded shadow hover:bg-red-700 transition text-sm"
-            >
-              ⏹ Stop
-            </button>
-            <button
-              onClick={handleScanAgain}
-              className="px-3 py-1 bg-blue-600 text-white rounded shadow hover:bg-blue-700 transition text-sm"
-            >
-              Escanear novamente
-            </button>
-          </div>
+  <button
+    onClick={handlePlay}
+    className="px-3 py-1 bg-yellow-500 text-black font-bold rounded shadow hover:bg-yellow-400 transition text-sm"
+  >
+    ▶ Play
+  </button>
+  <button
+    onClick={handleStop}
+    className="px-3 py-1 bg-red-600 text-white font-bold rounded shadow hover:bg-red-700 transition text-sm"
+  >
+    ⏹ Stop
+  </button>
+  <button
+    onClick={handleScanAgain}
+    className="px-3 py-1 bg-blue-600 text-white rounded shadow hover:bg-blue-700 transition text-sm"
+  >
+    Escanear novamente
+  </button>
+</div>
+
         </div>
       )}
     </div>
