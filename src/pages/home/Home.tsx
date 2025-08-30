@@ -1,13 +1,6 @@
-
-
 function Home() {
   return (
-    <section
-      className="flex flex-col items-center justify-center text-center min-h-screen w-full bg-cover bg-center relative"
-      
-    >
-      
-
+    <section className="flex flex-col items-center justify-center text-center min-h-screen w-full bg-cover bg-center relative">
       {/* Conteúdo */}
       <div className="relative z-10 px-6">
         <h1 className="text-amber-200 text-5xl md:text-7xl font-extrabold tracking-widest drop-shadow-lg">

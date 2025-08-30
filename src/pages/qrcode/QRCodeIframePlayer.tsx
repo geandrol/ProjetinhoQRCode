@@ -151,6 +151,10 @@ const QRCodeReader = () => {
   };
 
   return (
+    <div>
+    <div className="flex justify-center">
+      <h1 className="text-2xl text-amber-300 font-extrabold z-20">Saiba mais sobre sua carta!</h1>
+    </div>
     <div className="flex flex-col items-center gap-4 mt-10 p-4">
       {/* Scanner */}
       {!qrResult && (
@@ -168,7 +172,7 @@ const QRCodeReader = () => {
           {/* Texto de instrução */}
           {isScanning && (
             <div className="bg-[#f5f2dc] border-t-2 border-yellow-700 m-2 rounded-sm p-2 text-xs text-black font-serif leading-snug text-center">
-              Aponte a câmera para um QR Code...
+              Aponte a câmera para o QR Code da carta.
             </div>
           )}
 
@@ -259,6 +263,7 @@ const QRCodeReader = () => {
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 };
