@@ -109,25 +109,37 @@ const QRCodeReader = () => {
   };
 
   const handlePlay = () => {
-    if (!qrResult || !selectedVoice) return;
+  if (!qrResult) return;
 
-    // cancela qualquer leitura em andamento antes de começar outra
-    window.speechSynthesis.cancel();
+  // cancelar qualquer fala em andamento
+  window.speechSynthesis.cancel();
 
-    const utterance = new SpeechSynthesisUtterance(qrResult.texto);
+  const utterance = new SpeechSynthesisUtterance(qrResult.texto);
+
+  // se não tiver voice selecionada, tenta pegar a primeira disponível
+  if (selectedVoice) {
     utterance.voice = selectedVoice;
     utterance.lang = selectedVoice.lang;
-    utterance.rate = 1;
-    utterance.pitch = 1;
+  } else {
+    const fallback = window.speechSynthesis.getVoices().find(v =>
+      v.lang.toLowerCase().includes("pt-br")
+    );
+    if (fallback) {
+      utterance.voice = fallback;
+      utterance.lang = fallback.lang;
+    }
+  }
 
-    utteranceRef.current = utterance;
-    window.speechSynthesis.speak(utterance);
-  };
+  utterance.rate = 1;
+  utterance.pitch = 1;
 
-  const handleStop = () => {
-    window.speechSynthesis.cancel();
-    utteranceRef.current = null;
-  };
+  utterance.onstart = () => console.log("🔊 Falando...");
+  utterance.onend = () => console.log("✅ Fala terminou");
+  utterance.onerror = (e) => console.error("Erro no TTS:", e);
+
+  utteranceRef.current = utterance;
+  window.speechSynthesis.speak(utterance);
+};
 
   return (
     <div className="flex flex-col items-center gap-4 mt-28 p-4">
@@ -170,7 +182,7 @@ const QRCodeReader = () => {
 
       {/* Card resultado */}
       {qrResult && (
-        <div className="relative w-80 h-[28rem] bg-[#e4cfa3] border-4 border-yellow-700 rounded-xl shadow-2xl flex flex-col">
+        <div className="relative w-80 h-[44rem] bg-[#e4cfa3] border-4 border-yellow-700 rounded-xl shadow-2xl flex flex-col">
           {/* Cabeçalho (nome da carta) */}
           <div className="bg-[#8b0000] text-yellow-200 text-center font-bold text-lg px-2 py-1 border-b-2 border-yellow-700 tracking-wide">
             {qrResult?.nome || "Nome da Carta"}
@@ -182,7 +194,7 @@ const QRCodeReader = () => {
               <img
                 src={qrResult.foto}
                 alt={qrResult.nome}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover "
               />
             ) : (
               <p className="text-yellow-300 text-sm italic">[Imagem]</p>
@@ -223,12 +235,12 @@ const QRCodeReader = () => {
   >
     ▶ Play
   </button>
-  <button
+  {/* <button
     onClick={handleStop}
     className="px-3 py-1 bg-red-600 text-white font-bold rounded shadow hover:bg-red-700 transition text-sm"
   >
     ⏹ Stop
-  </button>
+  </button> */}
   <button
     onClick={handleScanAgain}
     className="px-3 py-1 bg-blue-600 text-white rounded shadow hover:bg-blue-700 transition text-sm"
