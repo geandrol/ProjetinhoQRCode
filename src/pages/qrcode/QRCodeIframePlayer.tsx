@@ -151,7 +151,7 @@ const QRCodeReader = () => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 mt-28 p-4">
+    <div className="flex flex-col items-center gap-4 mt-10 p-4">
       {/* Scanner */}
       {!qrResult && (
         <div className="relative w-80 h-[28rem] bg-[#e4cfa3] border-4 border-yellow-700 rounded-xl shadow-2xl flex flex-col">

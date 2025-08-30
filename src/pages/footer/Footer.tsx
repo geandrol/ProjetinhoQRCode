@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Footer() {
   return (
     <footer className="w-full bg-amber-800/70 backdrop-blur-md text-amber-50 shadow-inner ">
@@ -8,9 +10,15 @@ function Footer() {
 
         {/* Links */}
         <div className="flex gap-6 text-lg">
-          <p className="hover:text-yellow-200 cursor-pointer transition-colors">História</p>
-          <p className="hover:text-yellow-200 cursor-pointer transition-colors">Sobre</p>
-          <p className="hover:text-yellow-200 cursor-pointer transition-colors">Scanner</p>
+         <p className="text-amber-50 text-xl hover:text-yellow-200 cursor-pointer transition-colors">
+         <Link to= "">História</Link> 
+        </p>
+        <p className="text-amber-50 text-xl hover:text-yellow-200 cursor-pointer transition-colors">
+          <Link to= "">Sobre</Link> 
+        </p>
+        <p className="text-amber-50 text-xl hover:text-yellow-200 cursor-pointer transition-colors">
+          <Link to={"/scanner"}>Scanner</Link> 
+        </p>
         </div>
 
         {/* Direitos autorais */}
