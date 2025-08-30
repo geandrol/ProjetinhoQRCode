@@ -5,6 +5,7 @@ import Home from "./pages/home/Home";
 import Navbar from "./pages/navbar/Navbar";
 import QRCodeReader from "./components/qrcode/QRCodeIframePlayer";
 import GeradorQr from "./components/geradorqr/GeradorQr";
+import Historia from "./pages/historia/Historia";
 
 
 function App() {
@@ -19,10 +20,11 @@ function App() {
           {/* Overlay para escurecer e dar contraste ao texto */}
           <div className="absolute inset-0 bg-black/60"></div>
           <Routes>
-           <Route path="/" element={<Home/>}/>
-           <Route path="/home" element={<Home/>}/>
-           <Route path="/scanner" element={<QRCodeReader/>}/>
-           <Route path="/geradorqr" element={<GeradorQr/>}/>
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/scanner" element={<QRCodeReader />} />
+            <Route path="/geradorqr" element={<GeradorQr />} />
+            <Route path="/historia" element={<Historia />} />
 
           </Routes>
         </div>

@@ -11,10 +11,10 @@ function Footer() {
         {/* Links */}
         <div className="flex gap-6 text-lg">
          <p className="text-amber-50 text-xl hover:text-yellow-200 cursor-pointer transition-colors">
-         <Link to= "">História</Link> 
+         <Link to={"/historia"}>História</Link> 
         </p>
         <p className="text-amber-50 text-xl hover:text-yellow-200 cursor-pointer transition-colors">
-          <Link to= "/geradorqr">GerarQR</Link> 
+          <Link to= {"/geradorqr"}>GerarQR</Link> 
         </p>
         <p className="text-amber-50 text-xl hover:text-yellow-200 cursor-pointer transition-colors">
           <Link to={"/scanner"}>Scanner</Link> 

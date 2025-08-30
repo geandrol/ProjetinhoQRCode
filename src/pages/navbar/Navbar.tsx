@@ -17,10 +17,10 @@ function Navbar() {
       {/* Menu Links para telas grandes */}
       <div className="hidden md:flex gap-6">
         <p className="text-amber-50 text-xl hover:text-yellow-200 cursor-pointer transition-colors">
-         <Link to= "">História</Link> 
+         <Link to= {"/historia"}>História</Link> 
         </p>
         <p className="text-amber-50 text-xl hover:text-yellow-200 cursor-pointer transition-colors">
-          <Link to= "/geradorqr">GerarQR</Link> 
+          <Link to= {"/geradorqr"}>GerarQR</Link> 
         </p>
         <p className="text-amber-50 text-xl hover:text-yellow-200 cursor-pointer transition-colors">
           <Link to={"/scanner"}>Scanner</Link> 
@@ -41,7 +41,7 @@ function Navbar() {
       {isOpen && (
         <div className="absolute top-full right-0 mt-2 w-40 bg-amber-800/90 backdrop-blur-md rounded-lg shadow-lg flex flex-col">
           <p className="px-4 py-2 text-amber-50 hover:bg-amber-700 cursor-pointer transition-colors">
-            <Link to= "">História</Link>
+            <Link to= "/historia">História</Link>
           </p>
           <p className="px-4 py-2 text-amber-50 hover:bg-amber-700 cursor-pointer transition-colors">
              <Link to= "/geradorqr">GerarQR</Link>
