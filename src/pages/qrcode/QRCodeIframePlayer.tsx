@@ -14,6 +14,7 @@ const QRCodeReader = () => {
   const [cameras, setCameras] = useState<{ id: string; label: string }[]>([]);
   const [selectedCamera, setSelectedCamera] = useState<string | null>(null);
 
+  const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [selectedVoice, setSelectedVoice] =
     useState<SpeechSynthesisVoice | null>(null);
@@ -109,12 +110,23 @@ const QRCodeReader = () => {
 
   const handlePlay = () => {
     if (!qrResult || !selectedVoice) return;
+
+    // cancela qualquer leitura em andamento antes de começar outra
+    window.speechSynthesis.cancel();
+
     const utterance = new SpeechSynthesisUtterance(qrResult.texto);
     utterance.voice = selectedVoice;
     utterance.lang = selectedVoice.lang;
     utterance.rate = 1;
     utterance.pitch = 1;
+
+    utteranceRef.current = utterance;
     window.speechSynthesis.speak(utterance);
+  };
+
+  const handleStop = () => {
+    window.speechSynthesis.cancel();
+    utteranceRef.current = null;
   };
 
   return (
@@ -210,6 +222,12 @@ const QRCodeReader = () => {
               className="px-3 py-1 bg-yellow-500 text-black font-bold rounded shadow hover:bg-yellow-400 transition text-sm"
             >
               ▶ Play
+            </button>
+            <button
+              onClick={handleStop}
+              className="px-3 py-1 bg-red-600 text-white font-bold rounded shadow hover:bg-red-700 transition text-sm"
+            >
+              ⏹ Stop
             </button>
             <button
               onClick={handleScanAgain}
