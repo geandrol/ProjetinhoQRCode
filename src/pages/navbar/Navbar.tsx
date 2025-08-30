@@ -20,7 +20,7 @@ function Navbar() {
          <Link to= "">História</Link> 
         </p>
         <p className="text-amber-50 text-xl hover:text-yellow-200 cursor-pointer transition-colors">
-          <Link to= "">Sobre</Link> 
+          <Link to= "/geradorqr">GerarQR</Link> 
         </p>
         <p className="text-amber-50 text-xl hover:text-yellow-200 cursor-pointer transition-colors">
           <Link to={"/scanner"}>Scanner</Link> 
@@ -44,7 +44,7 @@ function Navbar() {
             <Link to= "">História</Link>
           </p>
           <p className="px-4 py-2 text-amber-50 hover:bg-amber-700 cursor-pointer transition-colors">
-             <Link to= "">Sobre</Link>
+             <Link to= "/geradorqr">GerarQR</Link>
           </p>
           <p className="px-4 py-2 text-amber-50 hover:bg-amber-700 cursor-pointer transition-colors">
             <Link to={"/scanner"}>Scanner</Link> 

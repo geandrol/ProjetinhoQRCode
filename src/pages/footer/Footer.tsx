@@ -14,7 +14,7 @@ function Footer() {
          <Link to= "">História</Link> 
         </p>
         <p className="text-amber-50 text-xl hover:text-yellow-200 cursor-pointer transition-colors">
-          <Link to= "">Sobre</Link> 
+          <Link to= "/geradorqr">GerarQR</Link> 
         </p>
         <p className="text-amber-50 text-xl hover:text-yellow-200 cursor-pointer transition-colors">
           <Link to={"/scanner"}>Scanner</Link> 

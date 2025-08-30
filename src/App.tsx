@@ -3,7 +3,9 @@ import "./App.css";
 import Footer from "./pages/footer/Footer";
 import Home from "./pages/home/Home";
 import Navbar from "./pages/navbar/Navbar";
-import QRCodeReader from "./pages/qrcode/QRCodeIframePlayer";
+import QRCodeReader from "./components/qrcode/QRCodeIframePlayer";
+import GeradorQr from "./components/geradorqr/GeradorQr";
+
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
            <Route path="/" element={<Home/>}/>
            <Route path="/home" element={<Home/>}/>
            <Route path="/scanner" element={<QRCodeReader/>}/>
+           <Route path="/geradorqr" element={<GeradorQr/>}/>
+
           </Routes>
         </div>
         <Footer />
