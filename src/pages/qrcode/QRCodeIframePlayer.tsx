@@ -109,37 +109,46 @@ const QRCodeReader = () => {
   };
 
   const handlePlay = () => {
-  if (!qrResult) return;
+    if (!qrResult) return;
 
-  // cancelar qualquer fala em andamento
-  window.speechSynthesis.cancel();
+    // para qualquer leitura anterior antes de começar de novo
+    window.speechSynthesis.cancel();
 
-  const utterance = new SpeechSynthesisUtterance(qrResult.texto);
+    const utterance = new SpeechSynthesisUtterance(qrResult.texto);
 
-  // se não tiver voice selecionada, tenta pegar a primeira disponível
-  if (selectedVoice) {
-    utterance.voice = selectedVoice;
-    utterance.lang = selectedVoice.lang;
-  } else {
-    const fallback = window.speechSynthesis.getVoices().find(v =>
-      v.lang.toLowerCase().includes("pt-br")
-    );
-    if (fallback) {
-      utterance.voice = fallback;
-      utterance.lang = fallback.lang;
+    // usa voz selecionada ou pega uma de fallback
+    if (selectedVoice) {
+      utterance.voice = selectedVoice;
+      utterance.lang = selectedVoice.lang;
+    } else {
+      const fallback = window.speechSynthesis
+        .getVoices()
+        .find((v) => v.lang.toLowerCase().includes("pt-br"));
+      if (fallback) {
+        utterance.voice = fallback;
+        utterance.lang = fallback.lang;
+      }
     }
-  }
 
-  utterance.rate = 1;
-  utterance.pitch = 1;
+    utterance.rate = 1;
+    utterance.pitch = 1;
 
-  utterance.onstart = () => console.log("🔊 Falando...");
-  utterance.onend = () => console.log("✅ Fala terminou");
-  utterance.onerror = (e) => console.error("Erro no TTS:", e);
+    // eventos úteis pra debug
+    utterance.onstart = () => console.log("▶ Falando...");
+    utterance.onend = () => console.log("⏹ Terminou");
+    utterance.onerror = (e) => console.error("Erro TTS:", e);
 
-  utteranceRef.current = utterance;
-  window.speechSynthesis.speak(utterance);
-};
+    utteranceRef.current = utterance;
+    window.speechSynthesis.speak(utterance);
+  };
+
+  const handleStop = () => {
+    if (window.speechSynthesis.speaking || window.speechSynthesis.pending) {
+      console.log("⏹ Interrompido pelo usuário");
+      window.speechSynthesis.cancel();
+    }
+    utteranceRef.current = null;
+  };
 
   return (
     <div className="flex flex-col items-center gap-4 mt-28 p-4">
@@ -229,26 +238,25 @@ const QRCodeReader = () => {
           )}
 
           <div className="flex gap-2 justify-center mb-2">
-  <button
-    onClick={handlePlay}
-    className="px-3 py-1 bg-yellow-500 text-black font-bold rounded shadow hover:bg-yellow-400 transition text-sm"
-  >
-    ▶ Play
-  </button>
-  {/* <button
-    onClick={handleStop}
-    className="px-3 py-1 bg-red-600 text-white font-bold rounded shadow hover:bg-red-700 transition text-sm"
-  >
-    ⏹ Stop
-  </button> */}
-  <button
-    onClick={handleScanAgain}
-    className="px-3 py-1 bg-blue-600 text-white rounded shadow hover:bg-blue-700 transition text-sm"
-  >
-    Escanear novamente
-  </button>
-</div>
-
+            <button
+              onClick={handlePlay}
+              className="px-3 py-1 bg-yellow-500 text-black font-bold rounded shadow hover:bg-yellow-400 transition text-sm"
+            >
+              ▶ Play
+            </button>
+            <button
+              onClick={handleStop}
+              className="px-3 py-1 bg-red-600 text-white font-bold rounded shadow hover:bg-red-700 transition text-sm"
+            >
+              ⏹ Stop
+            </button>
+            <button
+              onClick={handleScanAgain}
+              className="px-3 py-1 bg-blue-600 text-white rounded shadow hover:bg-blue-700 transition text-sm"
+            >
+              Escanear novamente
+            </button>
+          </div>
         </div>
       )}
     </div>
