@@ -41,13 +41,13 @@ function Navbar() {
       {isOpen && (
         <div className="absolute top-full right-0 mt-2 w-40 bg-amber-800/90 backdrop-blur-md rounded-lg shadow-lg flex flex-col">
           <p className="px-4 py-2 text-amber-50 hover:bg-amber-700 cursor-pointer transition-colors">
-            História
+            <Link to= "">História</Link>
           </p>
           <p className="px-4 py-2 text-amber-50 hover:bg-amber-700 cursor-pointer transition-colors">
-            Sobre
+             <Link to= "">Sobre</Link>
           </p>
           <p className="px-4 py-2 text-amber-50 hover:bg-amber-700 cursor-pointer transition-colors">
-            Scanner
+            <Link to={"/scanner"}>Scanner</Link> 
           </p>
         </div>
       )}
